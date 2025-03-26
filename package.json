@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Learning ReactJs with NamasteReact",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx parcel index.html",
-    "build": "npx parcel build index.html"
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "repository": {
     "type": "git",

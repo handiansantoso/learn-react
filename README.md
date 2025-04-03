@@ -8,3 +8,7 @@
 Implements routing using react-router createBrowserRoute, RouteProvider, Link
 Create dynamic Restaurant detail page
 Create About, Contact Us and route error page
+
+# Lesson 8:
+Creating your own hooks (to handle api load)
+Make component lazy load (using lazy and Suspense component)

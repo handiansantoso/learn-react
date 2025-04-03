@@ -9,8 +9,8 @@ const RestaurantDetail = () => {
     if(detail === null)
         return (<Shimmer />);
     return (
-        <div>
-            <h1>{detail.name}</h1>
+        <div className="px-3">
+            <h1 className="text-3xl py-5">{detail.name}</h1>
             <h2>{detail.costForTwoMessage}</h2>
             <h2>
                 {detail.areaName}, {detail.city}

@@ -6,15 +6,15 @@ export const Header = () => {
     const [btnText, setBtnText] = useState('Login');
 
     return(
-    <div className="header">
-      <img src={LOGO_URL} className="logo"></img>
-      <div className="nav-items">
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About Us</Link></li>
-          <li><Link to="/contact">Contact Us</Link></li>
-          <li>Cart</li>
-          <li><button className="btn-login" onClick={() => {
+    <div className="flex justify-between bg-pink-200 shadow-lg m-2">
+      <img src={LOGO_URL} className="w-45"></img>
+      <div className="flex items-center">
+        <ul className="flex">
+          <li className="px-4"><Link to="/">Home</Link></li>
+          <li className="px-4"><Link to="/about">About Us</Link></li>
+          <li className="px-4"><Link to="/contact">Contact Us</Link></li>
+          <li className="px-4">Cart</li>
+          <li className="px-4"><button className="btn-login" onClick={() => {
             if(btnText === 'Login')
                 setBtnText('Logout');
             else

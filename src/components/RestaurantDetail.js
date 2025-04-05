@@ -1,30 +1,43 @@
 import { useParams } from "react-router";
 import Shimmer from "./Shimmer";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import { SWIGGY_ITEM_CAT } from "../utils/constants";
+import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantDetail = () => {
-    const {id} = useParams();
-    const [detail, menu] = useRestaurantMenu(id);
+  const { id } = useParams();
+  const [detail, category] = useRestaurantMenu(id);
+  const [showIndex, setShowIndex] = useState(null);
 
-    if(detail === null)
-        return (<Shimmer />);
-    return (
-        <div className="px-3">
-            <h1 className="text-3xl py-5">{detail.name}</h1>
-            <h2>{detail.costForTwoMessage}</h2>
-            <h2>
-                {detail.areaName}, {detail.city}
-            </h2>
-            <h3>
-                Menu list:
-                <ul>
-                    {menu.map((m) => {
-                        return (<li key={m.card.info.id}>{m.card.info.name} {m.card.info.defaultPrice / 100 || m.card.info.price / 100}</li>);
-                    })}
-                </ul>
-            </h3>
-        </div>
-    )
-}
+  const filteredCategory = category.filter((c) => {
+    return c?.card?.card["@type"] === SWIGGY_ITEM_CAT;
+  });
+  if (detail === null) return <Shimmer />;
+  return (
+    <div className="text-center">
+      <h1 className="font-bold my-6 text-2xl">{detail.name}</h1>
+      <h2>{detail.costForTwoMessage}</h2>
+      <h2>
+        {detail.areaName}, {detail.city}
+      </h2>
+      <h3>
+        {filteredCategory.map((c, index) => {
+          return (
+            <RestaurantCategory
+              key={c.card.card.categoryId}
+              title={c.card.card.title}
+              items={c.card.card.itemCards}
+              show={showIndex === index}
+              setShowIndex={() =>
+                showIndex === index ? setShowIndex(null) : setShowIndex(index)
+              }
+            />
+          );
+        })}
+      </h3>
+    </div>
+  );
+};
 
 export default RestaurantDetail;

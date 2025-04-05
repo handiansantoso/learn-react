@@ -15,3 +15,9 @@ Make component lazy load (using lazy and Suspense component)
 
 # Lesson 10;
 Setup tailwind css and replace css to tailwind
+
+# Lesson 11:
+Higher order component -> Creating wrapper component 
+Lifting State up -> 
+    Moving state to the parent component -> share state among sibling components to only show 1 item (accordion)
+Context -> createContext() -> useContext() -> Context.Provider wrapper - use to create data that is accesible everywhere

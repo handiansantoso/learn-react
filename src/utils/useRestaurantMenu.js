@@ -3,7 +3,7 @@ import { SWIGGY_DETAIL_URL } from "./constants";
 
 const useRestaurantMenu = (id) => {
   const [detail, setDetail] = useState(null);
-  const [menu, setMenu] = useState([]);
+  const [category, setCategory] = useState([]);
   useEffect(() => {
     loadData();
   }, [id]);
@@ -13,12 +13,9 @@ const useRestaurantMenu = (id) => {
     const json = await data.json();
     setDetail(json?.data?.cards[2]?.card?.card?.info);
     const { cards } = json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR;
-    for (let i = 0; i <= 5; i++) {
-      if (cards[i].card?.card?.itemCards !== undefined)
-        setMenu(cards[i].card?.card?.itemCards);
-    }
+    setCategory(cards);
   };
-  return [detail, menu];
+  return [detail, category];
 };
 
 export default useRestaurantMenu;

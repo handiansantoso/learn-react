@@ -9,6 +9,9 @@ import Error from "./components/Error";
 import RestaurantDetail from "./components/RestaurantDetail";
 import Shimmer from "./components/Shimmer";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 const AboutUs = lazy(() => import("./components/AboutUs"));
 const Footer = () => {
@@ -16,13 +19,15 @@ const Footer = () => {
 };
 const AppLayout = () => {
   return (
-    <UserContext.Provider value={{username: 'Elon'}}>
-      <div className="app">
-        <Header />
-        <Outlet />
-        <Footer />
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ username: "Elon" }}>
+        <div className="app">
+          <Header />
+          <Outlet />
+          <Footer />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -52,6 +57,10 @@ const AppRouter = createBrowserRouter([
         path: "/restaurant/:id",
         element: <RestaurantDetail />,
       },
+      {
+        path: "/cart",
+        element: <Cart />
+      }
     ],
   },
 ]);
